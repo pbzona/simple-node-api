@@ -15,6 +15,7 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
+// POST /todos - create a new todo
 app.post('/todos', authenticate, (req, res) => {
     var todo = new Todo({
         text: req.body.text,
@@ -28,6 +29,7 @@ app.post('/todos', authenticate, (req, res) => {
     });
 });
 
+// GET /todos - get existing todos
 app.get('/todos', authenticate, (req, res) => {
     Todo.find({
         _creator: req.user._id
@@ -38,6 +40,7 @@ app.get('/todos', authenticate, (req, res) => {
     });
 });
 
+// GET /todos/:id - gets existing todo by _id key
 app.get('/todos/:id', authenticate, (req, res) => {
     var id = req.params.id;
 
@@ -58,6 +61,7 @@ app.get('/todos/:id', authenticate, (req, res) => {
     });
 });
 
+// DELETE /todos/:id - deletes an existing todo by _id key
 app.delete('/todos/:id', authenticate, (req, res) => {
     var id = req.params.id;
 
@@ -78,6 +82,7 @@ app.delete('/todos/:id', authenticate, (req, res) => {
     })
 });
 
+// PATCH /todos/:id - modifies an existing todo
 app.patch('/todos/:id', authenticate, (req, res) => {
     var id = req.params.id;
     var body = _.pick(req.body, ['text', 'completed']);
@@ -106,6 +111,7 @@ app.patch('/todos/:id', authenticate, (req, res) => {
         });
 });
 
+// POST /users - creates a new user
 app.post('/users', (req, res) => {
     var body = _.pick(req.body, ['email', 'password']);
     var user = new User(body);
@@ -119,6 +125,7 @@ app.post('/users', (req, res) => {
     });
 });
 
+// POST /users/login - checks provided creds and generates an auth token for the user
 app.post('/users/login', (req, res) => {
     var body = _.pick(req.body, ['email', 'password']);
 
@@ -132,11 +139,12 @@ app.post('/users/login', (req, res) => {
 
 });
 
-// private route - uses authenticate middleware
+// GET /users/me - gets email address for current user
 app.get('/users/me', authenticate, (req, res) => {
     res.send(req.user);
 });
 
+// DELETE /users/me/token - logs out, deleting the current user's auth token
 app.delete('/users/me/token', authenticate, (req, res) => {
     req.user.removeToken(req.token).then(() => {
         res.status(200).send();
