@@ -6,7 +6,7 @@ var Todo = mongoose.model('Todo', {
         required: true,
         minlength: [1, 'Don\'t forget to add your todo!'],
         trim: true
-    }, 
+    },
     completed: {
         type: Boolean,
         default: false
@@ -14,6 +14,10 @@ var Todo = mongoose.model('Todo', {
     completedAt: {
         type: Number,
         default: null
+    },
+    _creator: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
     }
 });
 
