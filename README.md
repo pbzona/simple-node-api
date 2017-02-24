@@ -33,7 +33,7 @@ These are the endpoints for each HTTP method. Don't forget to set your Content-T
 - **/todos** - Returns all todo objects associated with the current authenticated user.
 - **/todos/:id** - Gets information for a specific todo, indicated by its `_id` property in the URL.
 
-### PATCH
+### PUT
 
 - **/todos/:id** - Updates the status of one of your todos. The URL should reference a specific todo item by its `_id` value, and the body should be a JSON object containing `"completed": true` or `"completed": false`. The `completedAt` property for the todo will be generated automatically.
 

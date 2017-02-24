@@ -167,7 +167,7 @@ describe('DELETE /todos/:id', () => {
     });
 });
 
-describe('PATCH /todos/:id', () => {
+describe('PUT /todos/:id', () => {
     it('should update the todo', (done) => {
         var id = todos[0]._id.toHexString();
         var updates = {
@@ -176,7 +176,7 @@ describe('PATCH /todos/:id', () => {
         }
 
         request(app)
-            .patch(`/todos/${id}`)
+            .put(`/todos/${id}`)
             .set('x-auth', users[0].tokens[0].token)
             .send(updates)
             .expect(200)
@@ -196,7 +196,7 @@ describe('PATCH /todos/:id', () => {
         }
 
         request(app)
-            .patch(`/todos/${id}`)
+            .put(`/todos/${id}`)
             .set('x-auth', users[1].tokens[0].token)
             .send(updates)
             .expect(404)
@@ -211,7 +211,7 @@ describe('PATCH /todos/:id', () => {
         }
 
         request(app)
-            .patch(`/todos/${id}`)
+            .put(`/todos/${id}`)
             .set('x-auth', users[1].tokens[0].token)
             .send(updates)
             .expect(200)

@@ -82,8 +82,8 @@ app.delete('/todos/:id', authenticate, (req, res) => {
     })
 });
 
-// PATCH /todos/:id - modifies an existing todo
-app.patch('/todos/:id', authenticate, (req, res) => {
+// PUT /todos/:id - modifies an existing todo
+app.put('/todos/:id', authenticate, (req, res) => {
     var id = req.params.id;
     var body = _.pick(req.body, ['text', 'completed']);
 
