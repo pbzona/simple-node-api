@@ -1,0 +1,13 @@
+// USE YOUR OWN SECRETS
+{
+  "test": {
+    "PORT": 3000,
+    "MONGODB_URI": "mongodb://localhost:27017/TodoAppTest",
+    "JWT_SECRET": "s23d452l38fa8u9a231s7d35f82uwe8i4o44m7kl0fas"
+  },
+  "development": {
+    "PORT": 3000,
+    "MONGODB_URI": "mongodb://localhost:27017/TodoApp",
+    "JWT_SECRET": "kf3lj765sd87kuf4i3wo79em91jkl423aj3v5c6as6df"
+  }
+}
